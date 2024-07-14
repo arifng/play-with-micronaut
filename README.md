@@ -1,5 +1,7 @@
 ## Pre-requisites
 - Java 21
+- Gradle 8.5
+- GraalVm (21.0.3-graal)
 
 ## How to run
 - From the root directory, run the following command:
