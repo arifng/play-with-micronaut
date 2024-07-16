@@ -1,4 +1,4 @@
-package com.arifng;
+package com.arifng.controller;
 
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Controller;
