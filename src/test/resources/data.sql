@@ -1,0 +1,1 @@
+INSERT INTO book(id, title, price) VALUES (1, 'Play with Micronaut', 200);

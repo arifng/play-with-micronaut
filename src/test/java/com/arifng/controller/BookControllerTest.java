@@ -1,20 +1,25 @@
 package com.arifng.controller;
 
+import com.arifng.model.Book;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
+import io.micronaut.context.annotation.Property;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.client.BlockingHttpClient;
 import io.micronaut.http.client.HttpClient;
 import io.micronaut.http.client.annotation.Client;
 import io.micronaut.http.client.exceptions.HttpClientResponseException;
+import io.micronaut.test.annotation.Sql;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import jakarta.inject.Inject;
 import org.junit.jupiter.api.Test;
 
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@Sql(value = {"classpath:schema.sql", "classpath:data.sql"})
 @MicronautTest
 public class BookControllerTest {
     @Inject
@@ -32,7 +37,7 @@ public class BookControllerTest {
         assertEquals(1L, id);
 
         String title = context.read("$.title", String.class);
-        assertEquals("Micronaut in Action", title);
+        assertEquals("Play with Micronaut", title);
 
         Integer price = context.read("$.price", Integer.class);
         assertEquals(200, price);
