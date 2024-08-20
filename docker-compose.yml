@@ -1,0 +1,29 @@
+version: '1'
+
+services:
+  app:
+    image: 'play-with-micronaut:latest'
+    build:
+      context: .
+    container_name: app
+    ports:
+      - '8080:8080'
+    depends_on:
+      - db
+    environment:
+      - DATASOURCES_DEFAULT_URL=jdbc:postgresql://localhost:5432/mn_db??characterEncoding=UTF-8
+      - DATASOURCES_DEFAULT_USERNAME=postgres
+      - DATASOURCES_DEFAULT_PASSWORD=root
+
+  db:
+    image: 'postgres:15.3-alpine'
+    container_name: db
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=mn_db
+    volumes:
+      - ./src/main/resources/db/migration/V1__create-book.sql:/docker-entrypoint-initdb.d/1-create-book.sql
+      - ./src/main/resources/db/migration/V2__insert-book.sql:/docker-entrypoint-initdb.d/1-insert-book.sql

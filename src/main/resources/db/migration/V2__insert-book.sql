@@ -1,1 +1,1 @@
-INSERT INTO devdb.book(id, title, price) VALUES (1, 'Play with Micronaut', 200);
+INSERT INTO PUBLIC.book(id, title, price) VALUES (1, 'Play with Micronaut', 200);
